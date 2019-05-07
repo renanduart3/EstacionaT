@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Estacionat.Models;
+using Estacionat.Data;
+using Estacionat.Services;
 
 namespace Estacionat
 {
@@ -38,14 +40,19 @@ namespace Estacionat
 
             services.AddDbContext<EstacionatContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("EstacionatContext"),builder => builder.MigrationsAssembly("Estacionat")));
+
+            services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
+            services.AddScoped<DepartmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                seedingService.Seed();
             }
             else
             {

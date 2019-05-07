@@ -3,14 +3,16 @@ using System;
 using Estacionat.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Estacionat.Migrations
 {
     [DbContext(typeof(EstacionatContext))]
-    partial class EstacionatContextModelSnapshot : ModelSnapshot
+    [Migration("20190507031955_ReferenciandoDept")]
+    partial class ReferenciandoDept
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -3,14 +3,16 @@ using System;
 using Estacionat.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Estacionat.Migrations
 {
     [DbContext(typeof(EstacionatContext))]
-    partial class EstacionatContextModelSnapshot : ModelSnapshot
+    [Migration("20190502234401_SalesRecordAdd")]
+    partial class SalesRecordAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,7 +60,7 @@ namespace Estacionat.Migrations
 
                     b.Property<DateTime>("BirthDate");
 
-                    b.Property<int>("DepartmentId");
+                    b.Property<int?>("DepartmentId");
 
                     b.Property<string>("Email");
 
@@ -80,10 +82,9 @@ namespace Estacionat.Migrations
 
             modelBuilder.Entity("Estacionat.Models.Seller", b =>
                 {
-                    b.HasOne("Estacionat.Models.Department", "Department")
+                    b.HasOne("Estacionat.Models.Department")
                         .WithMany("Sellers")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DepartmentId");
                 });
 #pragma warning restore 612, 618
         }
