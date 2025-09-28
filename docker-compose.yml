@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  estacionat.api:
+    image: ${DOCKER_REGISTRY-}estacionatapi
+    build:
+      context: .
+      dockerfile: EstacionaT.API/Dockerfile
